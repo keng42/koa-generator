@@ -1,4 +1,12 @@
-# koa-generator
+# mt-koa-generator
+
+fork from [koa-generator](https://www.npmjs.com/package/koa-generator)
+
+```sh
+$ mtkoa /tmp/foo && cd /tmp/foo
+```
+---
+
 
 http://koajs.com/
 
