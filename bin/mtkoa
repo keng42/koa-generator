@@ -135,6 +135,7 @@ function createApplication(app_name, path) {
       complete();
     });
 
+    mkdir(path + '/utils');
     mkdir(path + '/routes', function(){
       write(path + '/routes/index.js', index);
       complete();
@@ -206,7 +207,7 @@ function createApplication(app_name, path) {
         "koa": "^2.2.0",
         "koa-bodyparser": "^3.2.0",
         "koa-json": "^2.0.2",
-        "koa-logger": "^2.0.1",
+        "mt-koa-logger": "^1.0.0",
         "koa-onerror": "^1.2.1",
         "koa-router": "^7.1.1",
         "koa-static": "^3.0.0"
