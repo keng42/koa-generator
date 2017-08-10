@@ -1,6 +1,6 @@
 {
   "name": "mt-koa-generator",
-  "version": "1.1.15-c",
+  "version": "1.1.15-d",
   "description": "koa-generator fork from 17koa/koa-generator customized for mt",
   "main": "bin/koa",
   "scripts": {

@@ -100,9 +100,13 @@ function createApplication(app_name, path) {
 
   // JavaScript
   var app = loadTemplate('mtjs/app.js');
-  var config = loadTemplate('mtjs/config.js');
+  var eslintrc = loadTemplate('mtjs/eslintrc.js');
+  var indexConfig = loadTemplate('mtjs/config/index.js');
+  var devConfig = loadTemplate('mtjs/config/dev.js');
+  var prodConfig = loadTemplate('mtjs/config/prod.js');
   var www = loadTemplate('mtjs/www');
   var index = loadTemplate('mtjs/routes/index.js');
+  var api = loadTemplate('mtjs/routes/api.js');
 
   // CSS
   var css = loadTemplate('css/style.css');
@@ -136,8 +140,16 @@ function createApplication(app_name, path) {
     });
 
     mkdir(path + '/utils');
+    mkdir(path + '/handles');
     mkdir(path + '/routes', function(){
       write(path + '/routes/index.js', index);
+      write(path + '/routes/api.js', api);
+      complete();
+    });
+    mkdir(path + '/config', function(){
+      write(path + '/config/index.js', indexConfig);
+      write(path + '/config/dev.js', devConfig);
+      write(path + '/config/prod.js', prodConfig);
       complete();
     });
 
@@ -264,7 +276,8 @@ function createApplication(app_name, path) {
     // write files
     write(path + '/package.json', JSON.stringify(pkg, null, 2));
     write(path + '/app.js', app);
-    write(path + '/config.js', config);
+    write(path + '/.eslintrc.js', eslintrc);
+    // write(path + '/config.js', config);
     mkdir(path + '/bin', function(){
       www = www.replace('{name}', app_name);
       write(path + '/bin/www', www, 0755);
