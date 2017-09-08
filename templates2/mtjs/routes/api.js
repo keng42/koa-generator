@@ -4,22 +4,23 @@ router.use(async (ctx, next) => {
   try {
     await next();
   } catch (err) {
-    if (err instanceof Error) {
-      throw err;
+    ctx.status = err.status || 500;
+    const body = {
+      message: err.message,
+    };
+    if (ctx.status >= 500) {
+      console.error(err);
+    } else {
+      body.data = err.data;
     }
-    ctx.status = err.status || 400;
-    delete err.status;
-    ctx.body = err;
+    ctx.body = body;
   }
 });
 
 router.get('/error', async (ctx) => {
-  const err = {
-    message: 'you are not allow here',
-    status: 403,
+  ctx.throw(403, 'you are not allow here', {
     data: ctx.query,
-  };
-  throw err;
+  });
 });
 
 module.exports = router;

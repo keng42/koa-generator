@@ -101,6 +101,7 @@ function createApplication(app_name, path) {
   // JavaScript
   var app = loadTemplate('mtjs/app.js');
   var eslintrc = loadTemplate('mtjs/eslintrc.js');
+  var nodemon = loadTemplate('mtjs/nodemon.json');
   var indexConfig = loadTemplate('mtjs/config/index.js');
   var devConfig = loadTemplate('mtjs/config/dev.js');
   var prodConfig = loadTemplate('mtjs/config/prod.js');
@@ -277,6 +278,7 @@ function createApplication(app_name, path) {
     write(path + '/package.json', JSON.stringify(pkg, null, 2));
     write(path + '/app.js', app);
     write(path + '/.eslintrc.js', eslintrc);
+    write(path + '/nodemon.json', nodemon);
     // write(path + '/config.js', config);
     mkdir(path + '/bin', function(){
       www = www.replace('{name}', app_name);
